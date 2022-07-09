@@ -15,14 +15,14 @@ const data = [
         image: I1,
         title: 'Iphone 14',
         small: '128 gb',
-        url: ''
+        url: '/'
     },
     {
         id: 2,
         image: I2,
         title: 'Iphone 14',
         small: '128 gb',
-        url: ''
+        url: '/'
     }
 ]
 
@@ -32,7 +32,7 @@ const data = [
 const Header = () => {
   return (
     <header>
-     <div class=" container header__container">
+     <div className=" container header__container">
      <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -54,9 +54,9 @@ const Header = () => {
             data.map(({id,image,title,small,url})=>{
                 return(
                     
-                    <SwiperSlide>
+                    <SwiperSlide key={id}>
             <div className='info_slide' href="github.com" target="_blank">
-                <div className='slide_text'>
+                <div className='slide_text' >
                     <h1>{title}</h1>
                     <h5>{small}</h5>
 
@@ -75,7 +75,7 @@ const Header = () => {
 
       <div className='tri_block'>
       <div className="categories">
-        <a href=''>
+        <a href='/'>
             <h1>Computers</h1>
             <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -85,7 +85,7 @@ const Header = () => {
          </div>
 
          <div className="categories">
-        <a href=''>
+        <a href='/'>
             <h1>Computers</h1>
             <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -95,7 +95,7 @@ const Header = () => {
          </div>
 
          <div className="categories">
-        <a href=''>
+        <a href='/'>
             <h1>Computers</h1>
             <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
