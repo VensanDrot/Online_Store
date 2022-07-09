@@ -31,7 +31,7 @@ const data = [
 
 const Header = () => {
   return (
-    <header>
+    <section>
      <div className=" container header__container">
      <Swiper
         slidesPerView={1}
@@ -108,7 +108,7 @@ const Header = () => {
 
       </div>
      </div> 
-    </header>
+    </section>
   )
 }
 
