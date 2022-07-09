@@ -26,11 +26,11 @@
     --container-width-sm: 90%;
     --old: 1.2rem;
     --old-big: 2.5rem;
-    --small-font: 1.2rem;
-    --big-font: 2.5rem;
+    --small-font: 1.15rem;
+    --big-font: 2.45rem;
     --btn-pad: 0.75rem 1.2rem;
     --line-height: 1.7;
-    --pad: 50px;
+    --pad: 75px;
 }
 
 html {
@@ -139,6 +139,11 @@ img {
     }
      :root {
         --pad: 25px;
+        --small-font: 1.1rem;
+        --pad: 14px;
+        --big-font: 1.6rem;
+        --btn-pad: 0.7rem 1.25rem;
+        --line-height: 1.4;
     }
 }
 
@@ -172,10 +177,10 @@ img {
         margin-bottom: 2rem;
     }
      :root {
-        --small-font: 0.7rem;
+        --small-font: 0.9rem;
         --pad: 7px;
-        --big-font: 1.2rem;
-        --btn-pad: 0.5rem 0.95rem;
-        --line-height: 1.3;
+        --big-font: 1.4rem;
+        --btn-pad: 0.6rem 1.15rem;
+        --line-height: 1.4;
     }
 }

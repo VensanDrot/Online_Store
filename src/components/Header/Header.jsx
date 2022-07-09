@@ -8,6 +8,27 @@ import './header.css'
 import I1 from '../img/phone.webp'
 import I2 from '../img/slide2_image.jpg'
 
+
+const data = [
+    {
+        id: 1,
+        image: I1,
+        title: 'Iphone 14',
+        small: '128 gb',
+        url: ''
+    },
+    {
+        id: 2,
+        image: I2,
+        title: 'Iphone 14',
+        small: '128 gb',
+        url: ''
+    }
+]
+
+
+
+
 const Header = () => {
   return (
     <header>
@@ -26,33 +47,66 @@ const Header = () => {
         modules={[Autoplay,Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
+   
+            
+
+            {
+            data.map(({id,image,title,small,url})=>{
+                return(
+                    
+                    <SwiperSlide>
             <div className='info_slide' href="github.com" target="_blank">
                 <div className='slide_text'>
-                    <h1>Iphone 4s</h1>
-                    <h5>128 gb</h5>
+                    <h1>{title}</h1>
+                    <h5>{small}</h5>
 
-                    <a href="" className='btn btn-primary'>Click me</a>
+                    <a href={url} className='btn btn-primary'>Click me</a>
                 </div>
                 <div className='slide_img'>
-                    <img src={I1} alt="" />
+                    <img src={image} alt="" />
                 </div>
             </div>
             </SwiperSlide>
-            <SwiperSlide>
-            <div className='info_slide' href="github.com" target="_blank">
-                <div className='slide_text'>
-                    <h1>Iphone 4s</h1>
-                    <h5>128 gb</h5>
-
-                    <a href="" className='btn btn-primary'>Click me</a>
-                </div>
-                <div className='slide_img'>
-                    <img src={I2} alt="" />
-                </div>
-            </div>
-            </SwiperSlide>
+                    
+                )
+            })
+        } 
       </Swiper>
+
+      <div className='tri_block'>
+      <div className="categories">
+        <a href=''>
+            <h1>Computers</h1>
+            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            </h5>
+            </a>
+         </div>
+
+         <div className="categories">
+        <a href=''>
+            <h1>Computers</h1>
+            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            </h5>
+            </a>
+         </div>
+
+         <div className="categories">
+        <a href=''>
+            <h1>Computers</h1>
+            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            </h5>
+            </a>
+         </div>
+        
+     
+
+      </div>
      </div> 
     </header>
   )
