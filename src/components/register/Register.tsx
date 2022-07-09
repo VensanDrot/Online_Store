@@ -1,22 +1,30 @@
-import React from 'react'
+import React, {useState,useRef} from 'react'
 import './register.css'
 import {MdOutlineEmail} from 'react-icons/md'
 import {FaTelegramPlane} from 'react-icons/fa'
 import {SiUpwork} from 'react-icons/si'
-import { useRef } from 'react';
 import emailjs from 'emailjs-com'
 
 
+    let name: String;
+    let email: String;
+    let pass: String;
+    let conf: String;
+   
+
 const Register = () => {
+  
+  
   const form = useRef();
   const Register = (e) => {
     e.preventDefault();
    
-    let name = e.target.name.value;
-    let email = e.target.email.value;
-    let pass = e.target.password.value;
-    let conf = e.target.password1.value;
-    console.log(name,' ',email, ' ', pass,' ', conf);
+      name= e.target.name.value;
+      email= e.target.email.value;
+      pass= e.target.password.value;
+      conf= e.target.password1.value;
+    
+    ///console.log(name,' ',email, ' ', pass,' ', conf);
     if (name !== null && email !== null && (pass === conf)) {
     e.target.reset();
     }

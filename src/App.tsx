@@ -2,7 +2,7 @@ import React from "react";
 import Nav from "./components/nav/Nav"
 import Main from './components/main_page/Main'
 import Footer from './components/footer/Footer'
-import Register from "./components/register/Register";
+import Register from "./components/register/Register.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
     return (
