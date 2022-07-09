@@ -20,7 +20,7 @@ const Nav = () => {
       <Link to="/" className='vensan'>VensanStore</Link>
       <ul className='div'>
       <li><Link to="/">Home</Link></li>
-      <li><Link to="/Main" >Main</Link></li>
+      <li><Link to="/Register" >Register</Link></li>
       </ul>
       
       <div
@@ -37,12 +37,14 @@ const Nav = () => {
       <ul className='div-mobile' className={statusdiv}>
       <li><Link to="/" onClick={() => {
                     setStatusdiv(statusdiv === 'in' ? 'out' : 'in');
+                    setStatus(status === 'open' ? 'close' : 'open');
                   }
                   }>Home</Link></li>
-      <li><Link to="/Main" onClick={() => {
+      <li><Link to="/register" onClick={() => {
                     setStatusdiv(statusdiv === 'in' ? 'out' : 'in');
+                    setStatus(status === 'open' ? 'close' : 'open');
                   }
-                  } >Main</Link></li>
+                  } >Register</Link></li>
       </ul>
        
     </nav>

@@ -60,7 +60,7 @@ const Header = () => {
                     <h1>{title}</h1>
                     <h5>{small}</h5>
 
-                    <a href={url} className='btn btn-primary'>Click me</a>
+                    <a href={url} className='btn btn-primary'>Want me? </a>
                 </div>
                 <div className='slide_img'>
                     <img src={image} alt="" />

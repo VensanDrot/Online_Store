@@ -51,7 +51,7 @@ const data = [
 const Item_list = () => {
   return (
     <section className='test'>
-        <div className="container ">   
+    <div className="container ">   
         <h1 id="h1">Item's For Sale</h1> 
         <div className='portfolio_container'>
         {
@@ -66,7 +66,7 @@ const Item_list = () => {
                     <h3>{price}</h3>
                     <div className='portfolio_item_cta'>
                     <a href={demo} target='_blank' className='btn'>Buy now</a>
-                                  
+                    <a className='btn btn-primary' >Add to card</a>          
                     </div>
                 </article>
                
@@ -74,6 +74,10 @@ const Item_list = () => {
             })
         } 
         </div>
+    <div className='Delivery'>
+        <a href="" className='btn btn-primary'>Free Standart Delivery On All Orders</a>
+        <a href="" className='btn'>Gift Cards</a>
+    </div>
     </div>
     </section>
   )

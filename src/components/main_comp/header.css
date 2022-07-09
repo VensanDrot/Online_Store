@@ -62,18 +62,26 @@
 .tri_block {
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
     justify-content: center;
     gap: 2rem;
 }
 
 .categories {
-    height: 225px;
+    transition: var(--transition);
+    min-height: fit-content;
     overflow: hidden;
     padding: 5px 5px;
+    padding-bottom: 20px;
     background: var(--color-bg-variant);
-    border-radius: 1rem;
+    border-radius: 1.2rem;
+    border: 2px solid transparent;
+}
+
+.categories:hover {
+    background: transparent;
+    border-color: var(--color-bg-variant);
 }
 
 @media screen and (max-width: 650px) {
@@ -83,13 +91,6 @@
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
     }
-    .categories {
-        height: 190px;
-    }
 }
 
-@media screen and (max-width: 400px) {
-    .categories {
-        height: 150px;
-    }
-}
+@media screen and (max-width: 400px) {}
