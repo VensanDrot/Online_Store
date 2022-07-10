@@ -10,16 +10,16 @@ function App() {
        
         <Router>
             <Nav />
-        <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/main" element={<Main />} />
-            <Route path="/register" element={<Register />} />
-        </Routes>
+                <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/main" element={<Main />} />
+                    <Route path="/register" element={<Register />} />
+                </Routes>
             <Footer />
         </Router>
   </>
         
-    );
+    ); 
 }
 
 export default App;
