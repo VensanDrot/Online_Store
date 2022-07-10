@@ -24,7 +24,7 @@ const Register = () => {
       pass= e.target.password.value;
       conf= e.target.password1.value;
     
-    ///console.log(name,' ',email, ' ', pass,' ', conf);
+     console.log(name,' ',email, ' ', pass,' ', conf);
     if (name !== null && email !== null && (pass === conf)) {
     e.target.reset();
     }
@@ -58,7 +58,7 @@ const Register = () => {
             <a href="https://www.upwork.com/freelancers/~013d38b18a0d01544c" target="_blank">Send a message</a>
           </article>
         </div>
-        <form ref={form}  onSubmit={Register}>
+        <form  onSubmit={Register}>
           <input type="text" name='name' placeholder='Your Full Name' required/>
           <input type="email" name='email' placeholder='Your Email' required/>
           <input type="password" name='password' placeholder='Your Password' required/>
