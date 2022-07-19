@@ -24,9 +24,11 @@ const Register = () => {
       pass= e.target.password.value;
       conf= e.target.password1.value;
     
-     console.log(name,' ',email, ' ', pass,' ', conf);
+     //console.log(name,' ',email, ' ', pass,' ', conf);
     if (name !== null && email !== null && (pass === conf)) {
-    e.target.reset();
+     
+      console.log('here');
+     //e.target.reset();
     }
   };
 
