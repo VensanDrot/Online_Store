@@ -5,7 +5,7 @@ import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 const app = express();
 
-app.post("/reguser", async (req: Request,res: Response) => {
+app.post('/add-user', async (req: Request,res: Response) => {
     const {login, password, email} = req.body;
     const user = await prisma.user.create({
         data: {
@@ -14,10 +14,11 @@ app.post("/reguser", async (req: Request,res: Response) => {
             email: email
         },
     });
+    console.log('here');
     res.json(user);
 });
 
-app.get("/result", async (req: Request,res: Response) => {
+app.get("/", async (req: Request,res: Response) => {
     const users = await prisma.user.findMany();
     res.json(users);
 })
@@ -26,7 +27,7 @@ app.delete("/:id", async (req: Request,res: Response) => {
     const id = req.params.id;
     const deleted_user = await prisma.user.delete({
         where: {
-            id: id
+            id: Number(id)
         }
     })
     res.json(deleted_user);

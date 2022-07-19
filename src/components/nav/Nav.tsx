@@ -11,7 +11,7 @@ const Nav = () => {
 
   function stche() {
     setStatus(status === 'open' ? 'close' : 'open');
-        setStatusdiv(statusdiv === 'in' ? 'out' : 'in');
+    setStatusdiv(statusdiv === 'in' ? 'out' : 'in');
   }
 
   return (
