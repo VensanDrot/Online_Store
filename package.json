@@ -13,6 +13,8 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "emailjs-com": "^3.2.0",
+    "express": "^4.18.1",
+    "expressjs": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
@@ -46,10 +48,15 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/node": "^18.0.6",
     "node": "^18.5.0",
     "prisma": "^4.1.0",
     "ts-node": "^10.9.1",
+=======
+    "nodemon": "^2.0.19",
+    "prisma": "^4.0.0",
+>>>>>>> 5541993901eb3701d1fa37735490002c1f301c49
     "typescript": "^4.7.4"
   }
 }

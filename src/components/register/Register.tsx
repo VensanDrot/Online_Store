@@ -12,9 +12,9 @@ import emailjs from 'emailjs-com'
     let conf: String;
    
 
+
 const Register = () => {
-  
-  
+
   const form = useRef();
   const Register = (e) => {
     e.preventDefault();
