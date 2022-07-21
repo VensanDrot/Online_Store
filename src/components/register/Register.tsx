@@ -10,16 +10,16 @@ import emailjs from 'emailjs-com'
 
 const Register = () => {
   const form = useRef();
-  const [name, setUser] = useState("");
+  const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [conf, setConf] = useState("");
   
   
-  const Registerer = (e) => {
+  const Registerer = async (e) => {
     e.preventDefault();
  
-    setUser(e.target.name.value);
+    setLogin(e.target.name.value);
     setEmail(e.target.email.value);
     setPass(e.target.password.value);
     setConf(e.target.password1.value);
@@ -30,9 +30,14 @@ const Register = () => {
     // let pass= e.target.password.value;
     // let conf= e.target.password1.value;
     
-    console.log(name,' ',email, ' ', pass,' ', conf);
-    if (name !== null && email !== null && (pass === conf)) {
-     
+    console.log(login,' ',email, ' ', pass,' ', conf);
+    if (login !== null && email !== null && (pass === conf)) {
+    const response = await fetch('http://localhost:3001/createuser', { 
+    method: 'post', 
+    body: JSON.stringify({ login, email, pass }),
+    headers: { 'Content-Type': 'application/json' }})
+    //.then(res=> res.json())
+    //console.log(response[0].email);
      //e.target.reset();
     }
   };
@@ -68,8 +73,8 @@ const Register = () => {
         <form  onSubmit={Registerer}>
 
           <input onChange={(e)=> {
-            setUser( e.target.value );
-          }} value={name} type="text" name='name' placeholder='Your Full Name' required/>
+            setLogin( e.target.value );
+          }} value={login} type="text" name='name' placeholder='Your Full Name' required/>
 
           <input onChange={(e)=> {
             setEmail( e.target.value );

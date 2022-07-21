@@ -1,24 +1,31 @@
 import express, { Request , Response} from "express";
 import {PrismaClient} from '@prisma/client';
-
-
+import bodyParser from "body-parser";
+var jsonParser = bodyParser.json();
 const prisma = new PrismaClient();
 const app = express();
 
-app.post('/add-user', async (req: Request,res: Response) => {
-    const {login, password, email} = req.body;
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+
+app.post('/createuser', async (req: Request,res: Response) => {
+    
+    console.log(req.body);
+    const {login, pass, email} = req.body;
     const user = await prisma.user.create({
         data: {
             login: login,
-            password: password,
+            password: pass,
             email: email
         },
     });
-    console.log('here');
     res.json(user);
 });
 
-app.get("/", async (req: Request,res: Response) => {
+app.get("/get", async (req: Request,res: Response) => {
     const users = await prisma.user.findMany();
     res.json(users);
 })
