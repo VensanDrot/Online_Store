@@ -15,11 +15,10 @@ const Login = () => {
   const [error, setErr] = useState("");
 
   function check() {
-    
-    if (error !== '') {
-    return <h5 className="h5_err">{error}</h5>
+    if (error !== "") {
+      return <h5 className="h5_err">{error}</h5>;
     }
-}
+  }
 
   // button click register function
   const Registerer = async (e) => {
@@ -39,6 +38,8 @@ const Login = () => {
       // console.log(response[0]);
       if (response[0] !== null) {
         e.target.reset();
+        setEmail('');
+        setPass('');
         setErr("");
       }
       if (response[0] === undefined) {
@@ -82,7 +83,6 @@ const Login = () => {
           </article>
         </div>
         <form onSubmit={Registerer}>
-         
           <input
             onChange={(e) => {
               setEmail(e.target.value);
@@ -91,6 +91,7 @@ const Login = () => {
             type="email"
             name="name"
             placeholder="Your Email"
+            maxLength='50'
             required
           />
 
@@ -102,9 +103,10 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Your Password"
+            maxLength='50'
             required
           />
-          
+
           {check()}
           <button type="submit" className="btn btn-primary">
             Submit

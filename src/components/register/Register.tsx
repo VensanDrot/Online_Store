@@ -14,9 +14,14 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [conf, setConf] = useState("");
-  const [err_log, setLog] = useState("");
-  const [err_email, setEemail] = useState("");
-  const [err_pass, setEpas] = useState("");
+  const [error, setErr] = useState("");
+
+  function check() {
+    if (error !== "") {
+      return <h5 className="h5_err">{error}</h5>;
+    }
+  }
+
 
   // button click register function
   const Registerer = async (e) => {
@@ -27,34 +32,46 @@ const Register = () => {
     setPass(e.target.password.value);
     setConf(e.target.password1.value);
 
-    // old way of getting variable
-    // let name= e.target.name.value;
-    // let email= e.target.email.value;
-    // let pass= e.target.password.value;
-    // let conf= e.target.password1.value;
-
-    // err checker
-    if (name.length < 4) {
-      setLog("Login is too short");
-    }
-    if (pass.length < 8) {
-      setLog("Login is too short");
-      if (pass !== conf) {
-        setLog("Passwords doesnt match");
-      }
-    }
-
-    //console.log(user.login);
-    //console.log(login, " ", email, " ", pass, " ", conf);
-    if (name !== null && email !== null && pass === conf) {
-      const response = await fetch("http://localhost:3001/createuser", {
-        method: "post",
-        body: JSON.stringify({ name, email, pass }),
-        headers: { "Content-Type": "application/json" },
-      });
-      //.then(res=> res.json())
-      //console.log(response[0].email);
+    const response = await fetch("http://localhost:3001/getuser", {
+      method: "post",
+      body: JSON.stringify({ email }),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => res.json());
+    if (response[0] !== undefined) {
+      setErr("This email is already registered");
       e.target.reset();
+    } 
+    if (response[0] === undefined)
+    {
+
+      if (name.length < 2  ) {
+        setErr('Name is too short'); 
+      }
+
+      if (pass !== conf) {
+        setErr('Passwords does not mathc');
+      }
+
+      if (pass.length < 8) {
+        setErr('Password is too short');
+      }
+      
+
+
+      if (name !== null && email !== null && pass === conf && error === '') {
+        const response = await fetch("http://localhost:3001/createuser", {
+          method: "post",
+          body: JSON.stringify({ name, email, pass }),
+          headers: { "Content-Type": "application/json" },
+        });
+        setEmail('');
+        setName('');
+        setPass('');
+        setConf('');
+        //.then(res=> res.json())
+        //console.log(response[0].email);
+       
+      }
     }
   };
 
@@ -62,6 +79,7 @@ const Register = () => {
     <section id="contact">
       <h5>Become A Client</h5>
       <h2>Register Your Account</h2>
+
       <div className="container contact_container">
         <div className="contact_options">
           <article className="contact_option">
@@ -72,6 +90,7 @@ const Register = () => {
               Send a message
             </a>
           </article>
+
           <article className="contact_option">
             <FaTelegramPlane className="contact-icon" />
             <h4>Telegram</h4>
@@ -80,6 +99,7 @@ const Register = () => {
               Send a message
             </a>
           </article>
+
           <article className="contact_option">
             <SiUpwork className="contact-icon" />
             <h4>UpWork</h4>
@@ -92,6 +112,7 @@ const Register = () => {
             </a>
           </article>
         </div>
+
         <form onSubmit={Registerer}>
           <input
             onChange={(e) => {
@@ -101,6 +122,7 @@ const Register = () => {
             type="text"
             name="name"
             placeholder="Your Login"
+            maxLength='50'
             required
           />
 
@@ -112,6 +134,7 @@ const Register = () => {
             type="email"
             name="email"
             placeholder="Your Email"
+            maxLength='50'
             required
           />
 
@@ -123,6 +146,7 @@ const Register = () => {
             type="password"
             name="password"
             placeholder="Your Password"
+            maxLength='50'
             required
           />
 
@@ -134,8 +158,11 @@ const Register = () => {
             type="password"
             name="password1"
             placeholder="Confirm Your Password"
+            maxLength='50'
             required
           />
+
+          {check()}
 
           <button type="submit" className="btn btn-primary">
             Submit
