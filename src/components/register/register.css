@@ -11,6 +11,12 @@
     gap: 1.2rem;
 }
 
+.h5_err {
+    color: red;
+    margin: 0;
+    padding: 0;
+}
+
 .contact_option {
     background: var(--color-bg-variant);
     padding: 1.2rem;
@@ -59,14 +65,14 @@ textarea {
 
 /* responsive */
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 1024px) {
     .container.contact_container {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
     .container.contact_container {
         width: var(--container-width-sm);
     }

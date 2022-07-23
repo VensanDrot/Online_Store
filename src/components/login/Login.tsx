@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import "./register.css";
+import React, { useState, useRef, useEffect } from "react";
+import "../register/register.css";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
 import { SiUpwork } from "react-icons/si";
@@ -7,61 +7,50 @@ import { stringify } from "querystring";
 
 //interface
 
-const Register = () => {
+const Login = () => {
   // constants
   const form = useRef();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [conf, setConf] = useState("");
-  const [err_log, setLog] = useState("");
-  const [err_email, setEemail] = useState("");
-  const [err_pass, setEpas] = useState("");
+  const [error, setErr] = useState("");
+
+  function check() {
+    
+    if (error !== '') {
+    return <h5 className="h5_err">{error}</h5>
+    }
+}
 
   // button click register function
   const Registerer = async (e) => {
     e.preventDefault();
 
-    setName(e.target.name.value);
-    setEmail(e.target.email.value);
+    setEmail(e.target.name.value);
     setPass(e.target.password.value);
-    setConf(e.target.password1.value);
-
-    // old way of getting variable
-    // let name= e.target.name.value;
-    // let email= e.target.email.value;
-    // let pass= e.target.password.value;
-    // let conf= e.target.password1.value;
-
-    // err checker
-    if (name.length < 4) {
-      setLog("Login is too short");
-    }
-    if (pass.length < 8) {
-      setLog("Login is too short");
-      if (pass !== conf) {
-        setLog("Passwords doesnt match");
-      }
-    }
 
     //console.log(user.login);
     //console.log(login, " ", email, " ", pass, " ", conf);
-    if (name !== null && email !== null && pass === conf) {
-      const response = await fetch("http://localhost:3001/createuser", {
+    if (email !== null && pass !== null) {
+      const response = await fetch("http://localhost:3001/getuser", {
         method: "post",
-        body: JSON.stringify({ name, email, pass }),
+        body: JSON.stringify({ email, pass }),
         headers: { "Content-Type": "application/json" },
-      });
-      //.then(res=> res.json())
-      //console.log(response[0].email);
-      e.target.reset();
+      }).then((res) => res.json());
+      // console.log(response[0]);
+      if (response[0] !== null) {
+        e.target.reset();
+        setErr("");
+      }
+      if (response[0] === undefined) {
+        setErr("Wrong email or password");
+      }
     }
   };
 
   return (
     <section id="contact">
-      <h5>Become A Client</h5>
-      <h2>Register Your Account</h2>
+      <h5>Sign in</h5>
+      <h2>Sign in your account</h2>
       <div className="container contact_container">
         <div className="contact_options">
           <article className="contact_option">
@@ -93,24 +82,14 @@ const Register = () => {
           </article>
         </div>
         <form onSubmit={Registerer}>
-          <input
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            value={name}
-            type="text"
-            name="name"
-            placeholder="Your Login"
-            required
-          />
-
+         
           <input
             onChange={(e) => {
               setEmail(e.target.value);
             }}
             value={email}
             type="email"
-            name="email"
+            name="name"
             placeholder="Your Email"
             required
           />
@@ -125,18 +104,8 @@ const Register = () => {
             placeholder="Your Password"
             required
           />
-
-          <input
-            onChange={(e) => {
-              setConf(e.target.value);
-            }}
-            value={conf}
-            type="password"
-            name="password1"
-            placeholder="Confirm Your Password"
-            required
-          />
-
+          
+          {check()}
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
@@ -146,4 +115,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
