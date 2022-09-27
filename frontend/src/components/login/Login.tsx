@@ -14,16 +14,11 @@ const Login = () => {
   const [pass, setPass] = useState("");
   const [error, setErr] = useState("");
 
-  function check() {
-    if (error !== "") {
-      return <h5 className="h5_err">{error}</h5>;
-    }
-  }
 
   // button click register function
   const Registerer = async (e) => {
     e.preventDefault();
-
+    setErr("");
     setEmail(e.target.name.value);
     setPass(e.target.password.value);
 
@@ -35,20 +30,22 @@ const Login = () => {
         body: JSON.stringify({ email, pass }),
         headers: { "Content-Type": "application/json" },
       }).then((res) => res.json());
-      // console.log(response[0]);
+       
       
       //user is found
-      if (response[0] !== null) {
+      if (response[0]) {
+        console.log('true');
         const id = response[0].id;
-        console.log(response[0]);
-        //e.target.reset();
-        //setEmail('');
-        //setPass('');
-        //setErr("");
+        console.log(response[0])
+        setEmail('');
+        setPass('');
+        setErr("");
+        e.target.reset();
       }
 
       // cant find a user
-      if (response[0] === undefined) {
+      if (!response[0]) {
+        console.log('false');
         setErr("Wrong email or password");
       }
     }
@@ -89,6 +86,7 @@ const Login = () => {
           </article>
         </div>
         <form onSubmit={Registerer}>
+       
           <input
             onChange={(e) => {
               setEmail(e.target.value);
@@ -112,8 +110,7 @@ const Login = () => {
             maxLength='50'
             required
           />
-
-          {check()}
+          {error}
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

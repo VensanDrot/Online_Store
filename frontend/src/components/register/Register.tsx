@@ -10,23 +10,23 @@ import { stringify } from "querystring";
 const Register = () => {
   // constants
   const form = useRef();
+  let num = 0;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [conf, setConf] = useState("");
-  const [error, setErr] = useState("");
-
-  function check() {
-    if (error !== "") {
-      return <h5 className="h5_err">{error}</h5>;
-    }
-  }
-
+  const [error1, setErr1] = useState("");
+  const [error2, setErr2] = useState("");
+  const [error3, setErr3] = useState("");
+  const [error4, setErr4] = useState("");
 
   // button click register function
   const Registerer = async (e) => {
     e.preventDefault();
-    setErr("");
+    setErr1('');
+    setErr2('');
+    setErr3('');
+    setErr4('');
     setName(e.target.name.value);
     setEmail(e.target.email.value);
     setPass(e.target.password.value);
@@ -38,27 +38,31 @@ const Register = () => {
       headers: { "Content-Type": "application/json" },
     }).then((res) => res.json());
     if (response[0] !== undefined) {
-      setErr("This email is already registered");
+      setErr4("This email is already registered");
+      num++;
       e.target.reset();
     } 
     if (response[0] === undefined)
     {
 
       if (name.length < 2  ) {
-        setErr('Name is too short'); 
+        setErr1('Name is too short'); 
+        num++;
       }
 
       if (pass !== conf) {
-        setErr('Passwords does not mathc');
+        setErr3('Passwords does not mathc');
+        num++;
       }
 
       if (pass.length < 8) {
-        setErr('Password is too short');
+        setErr2('Password is too short');
+        num++;
       }
       
 
 
-      if (name !== null && email !== null && pass === conf && error === '') {
+      if (name !== null && email !== null && pass === conf && num < 1) {
         const response = await fetch("http://localhost:3001/createuser", {
           method: "post",
           body: JSON.stringify({ name, email, pass }),
@@ -68,9 +72,12 @@ const Register = () => {
         setName('');
         setPass('');
         setConf('');
+        setErr1('');
+        setErr2('');
+        setErr3('');
+        setErr4('');
         //.then(res=> res.json())
         //console.log(response[0].email);
-       
       }
     }
   };
@@ -114,6 +121,7 @@ const Register = () => {
         </div>
 
         <form onSubmit={Registerer}>
+          {error1}
           <input
             onChange={(e) => {
               setName(e.target.value);
@@ -125,7 +133,7 @@ const Register = () => {
             maxLength='50'
             required
           />
-
+          {error4}
           <input
             onChange={(e) => {
               setEmail(e.target.value);
@@ -137,7 +145,7 @@ const Register = () => {
             maxLength='50'
             required
           />
-
+           {error2}
           <input
             onChange={(e) => {
               setPass(e.target.value);
@@ -149,7 +157,7 @@ const Register = () => {
             maxLength='50'
             required
           />
-
+          {error3}
           <input
             onChange={(e) => {
               setConf(e.target.value);
@@ -161,8 +169,6 @@ const Register = () => {
             maxLength='50'
             required
           />
-
-          {check()}
 
           <button type="submit" className="btn btn-primary">
             Submit
