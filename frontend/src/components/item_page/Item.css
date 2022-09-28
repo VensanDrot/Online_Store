@@ -1,0 +1,21 @@
+.item_container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.image {
+    width: 45%;
+}
+
+.description {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    row-gap: 1.2rem;
+    align-items: left;
+}
+
+.text {
+    font-size: 1rem;
+}

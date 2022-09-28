@@ -28,6 +28,9 @@ const Nav = () => {
           <li>
             <Link to="/login">login</Link>
           </li>
+          <li>
+            <Link to="/Item">item-test</Link>
+          </li>
         </ul>
 
         <div

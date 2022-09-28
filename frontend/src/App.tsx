@@ -4,6 +4,8 @@ import Main from "./components/main_page/Main.tsx";
 import Footer from "./components/footer/Footer.tsx";
 import Register from "./components/register/Register.tsx";
 import Login from "./components/login/Login.tsx";
+import Item from "./components/item_page/Item.tsx";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/item/:id" element={<Item />} />
         </Routes>
         <Footer />
       </Router>

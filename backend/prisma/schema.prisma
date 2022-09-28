@@ -13,3 +13,11 @@ model user {
   password String @db.VarChar(255)
   email    String @db.VarChar(255)
 }
+
+model item {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(255)
+  description String @db.VarChar(255)
+  price       Float?
+  image       String @db.VarChar(255)
+}

@@ -5,8 +5,8 @@ import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import bcrypt from "bcrypt"
-
-
+import fs, { fstat } from "fs";
+import path from "path"
 
 var jsonParser = bodyParser.json();
 const prisma = new PrismaClient();
@@ -60,30 +60,46 @@ app.post("/getuser", async (req: Request, res: Response) => {
 });
 
 
-app.delete("/:id", async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const deleted_user = await prisma.user.delete({
+
+
+// Item's get and image part 
+
+// image folder check 
+fs.access("../image", function (error) {
+  if (error) {
+    fs.mkdir(path.join(__dirname, "../image"), (err) => {
+      if (err) {
+        console.log('already there');
+      }
+    });
+  }
+});
+
+
+app.get("/image/:name", async (req, res) => {
+  //console.log(req.params.name);
+  res.download("./image/" + req.params.name);
+});
+
+//get all items
+
+app.get('/items', async(req: Request,res:Response) => {
+  const users = await prisma.item.findMany();
+  res.json(users);
+})
+
+
+
+app.post('/item', async(req: Request,res:Response) => {
+  const { id } = req.body;
+  const user = await prisma.item.findUnique({
     where: {
       id: Number(id),
     },
   });
-  res.json(deleted_user);
-});
+  res.json(user);
+})
 
-
-// Session part idk if it works or not yet
-
-app.use(
-  session({
-    //key: "UserId",
-    secret: "subscribe",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 3600 * 24,
-    }
-  })
-);
 
 
 
