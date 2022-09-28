@@ -64,6 +64,17 @@ const Nav = () => {
               Register
             </Link>
           </li>
+          <li>
+            <Link
+              to="/login"
+              onClick={() => {
+                setStatusdiv(statusdiv === "in" ? "out" : "in");
+                setStatus(status === "open" ? "close" : "open");
+              }}
+            >
+              Login
+            </Link>
+          </li>
         </ul>
       </nav>
     </>

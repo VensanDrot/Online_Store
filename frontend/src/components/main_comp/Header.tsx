@@ -24,6 +24,7 @@ const Header = () => {
         });
       }, []);
   
+      console.log(Slides)
   
   
   
@@ -52,7 +53,7 @@ const Header = () => {
                   <div className="slide_text">
                     <h1>{g.name}</h1>
                     <h5>{g.small}</h5>
-                    <Link to={"/Item/"+g.id} className="btn btn-primary">
+                    <Link to={"/Item/"+g.url} className="btn btn-primary">
                       Want me?{" "}
                     </Link>
                     
