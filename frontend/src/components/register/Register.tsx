@@ -51,7 +51,7 @@ const Register = () => {
       }
 
       if (pass !== conf) {
-        setErr3('Passwords does not mathc');
+        setErr3('Passwords does not match');
         num++;
       }
 

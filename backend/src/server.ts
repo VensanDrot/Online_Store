@@ -4,6 +4,9 @@ import { PrismaClient } from "@prisma/client";
 import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import bcrypt from "bcrypt"
+
+
 
 var jsonParser = bodyParser.json();
 const prisma = new PrismaClient();
@@ -28,10 +31,11 @@ app.use(cors({
 app.post("/createuser", async (req: Request, res: Response) => {
   console.log(req.body);
   const { name, pass, email } = req.body;
+  const hashedpassword = await bcrypt.hash(pass, 4);
   const user = await prisma.user.create({
     data: {
       name: name,
-      password: pass,
+      password: hashedpassword,
       email: email,
     },
   });
