@@ -15,9 +15,21 @@ model user {
 }
 
 model item {
-  id          Int    @id @default(autoincrement())
-  name        String @db.VarChar(255)
-  description String @db.VarChar(255)
+  id          Int      @id @unique(map: "id") @default(autoincrement())
+  name        String   @db.VarChar(255)
+  description String   @db.VarChar(255)
   price       Float?
-  image       String @db.VarChar(255)
+  image       String   @db.VarChar(255)
+  slider      slider[]
+}
+
+model slider {
+  id    Int    @id @default(autoincrement())
+  image String @db.VarChar(255)
+  name  String @db.VarChar(255)
+  small String @db.VarChar(255)
+  url   Int
+  item  item   @relation(fields: [url], references: [id], onUpdate: Restrict, map: "slider_ibfk_1")
+
+  @@index([url], map: "url")
 }

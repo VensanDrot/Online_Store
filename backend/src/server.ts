@@ -100,6 +100,14 @@ app.post('/item', async(req: Request,res:Response) => {
   res.json(user);
 })
 
+// working with slider info 
+//  SELECT slider.image, slider.name,slider.small, item.id FROM `slider` INNER JOIN item ON slider.url=item.id join sql query 
+
+app.get('/slides', async(req: Request,res:Response) => {
+  const users = await prisma.slider.findMany();
+  res.json(users);
+})
+
 
 
 

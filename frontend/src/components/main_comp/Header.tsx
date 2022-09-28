@@ -1,33 +1,35 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {Link} from 'react-router-dom'
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper";
 import "./header.css";
-import I1 from "../img/phone.webp";
-import I2 from "../img/slide2_image.jpg";
 
-const data = [
-  {
-    id: 1,
-    image: I1,
-    title: "Iphone 14",
-    small: "128 gb",
-    url: "/",
-  },
-  {
-    id: 2,
-    image: I2,
-    title: "Iphone 14",
-    small: "128 gb",
-    url: "/",
-  },
-];
+
+
 
 const Header = () => {
-  return (
+  const [Slides, SetSlides] = useState([]);
+
+      const response = fetch("http://localhost:3001/slides", {
+        method: "get",
+      }).then((res) => res.json());
+
+
+      useEffect(() => {
+        response.then((data) => {
+          SetSlides(data);
+        });
+      }, []);
   
+  
+  
+  
+  return (
+
+    
       <div className=" header__container">
         <Swiper
           slidesPerView={1}
@@ -43,20 +45,20 @@ const Header = () => {
           modules={[Autoplay, Pagination]}
           className="mySwiper"
         >
-          {data.map(({ id, image, title, small, url }) => {
+          {Slides.map((g) => {
             return (
-              <SwiperSlide key={id}>
-                <div className="info_slide" href="github.com" target="_blank">
+              <SwiperSlide key={g.id}>
+                <div className="info_slide" >
                   <div className="slide_text">
-                    <h1>{title}</h1>
-                    <h5>{small}</h5>
-
-                    <a href={url} className="btn btn-primary">
+                    <h1>{g.name}</h1>
+                    <h5>{g.small}</h5>
+                    <Link to={"/Item/"+g.id} className="btn btn-primary">
                       Want me?{" "}
-                    </a>
+                    </Link>
+                    
                   </div>
                   <div className="slide_img">
-                    <img src={image} alt="" />
+                    <img src={g.image} alt="" />
                   </div>
                 </div>
               </SwiperSlide>
