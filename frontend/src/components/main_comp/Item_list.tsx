@@ -22,8 +22,8 @@ const Item_list = () => {
 
 
   return (
-    <section className="test">
-      <div className="container ">
+    
+      <div className="list_item">
         <h1 id="h1">Item's For Sale</h1>
         <div className="portfolio_container">
           {Item.map((g) => {
@@ -54,7 +54,7 @@ const Item_list = () => {
           </a>
         </div>
       </div>
-    </section>
+  
   );
 };
 

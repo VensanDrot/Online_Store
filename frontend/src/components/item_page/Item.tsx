@@ -28,7 +28,7 @@ const Item = () => {
          </div>
          <div className="description">
           <h1>{item.name}</h1>
-          <h3>{item.description}</h3>
+          <h3 className="description1">{item.description}</h3>
           <h3>{item.price} $</h3>
           <button className="btn btn-primary text">Add to card</button>
          </div>

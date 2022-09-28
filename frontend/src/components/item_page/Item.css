@@ -8,14 +8,33 @@
     width: 45%;
 }
 
+.image img {}
+
 .description {
     display: flex;
     width: 50%;
     flex-direction: column;
     row-gap: 1.2rem;
     align-items: left;
+    position: relative;
 }
 
 .text {
     font-size: 1rem;
+}
+
+.description1 {
+    height: 40%;
+}
+
+@media screen and (max-width: 800px) {
+    .item_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2rem;
+    }
+    .description {
+        width: 100% !important;
+    }
 }

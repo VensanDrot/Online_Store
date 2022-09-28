@@ -27,8 +27,8 @@ const data = [
 
 const Header = () => {
   return (
-    <section>
-      <div className=" container header__container">
+  
+      <div className=" header__container">
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -99,7 +99,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </section>
+
   );
 };
 
