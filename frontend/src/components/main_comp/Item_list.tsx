@@ -5,7 +5,14 @@ import "./item.css";
 
 
 const Item_list = () => {
-  const [Item, SetItem] = useState([]);
+  const [Item, SetItem] = useState<{
+    id: number;
+    image: string;
+    name: string;
+    price: number;
+    }[]>(
+    [],
+  );
 
   const response = fetch("http://localhost:3001/items", {
     method: "get",

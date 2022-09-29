@@ -3,7 +3,7 @@ import "../register/register.css";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
 import { SiUpwork } from "react-icons/si";
-import { stringify } from "querystring";
+
 
 //interface
 
@@ -95,7 +95,7 @@ const Login = () => {
             type="email"
             name="name"
             placeholder="Your Email"
-            maxLength='50'
+            maxLength={50}
             required
           />
 
@@ -107,7 +107,7 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Your Password"
-            maxLength='50'
+            maxLength={50}
             required
           />
           {error}

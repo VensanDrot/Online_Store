@@ -11,7 +11,14 @@ import "./header.css";
 
 
 const Header = () => {
-  const [Slides, SetSlides] = useState([]);
+  const [Slides, SetSlides] = useState<{
+    id: number;
+    image: string;
+    name: string;
+    small: string;
+    url: number;}[]>(
+    [],
+  );
 
       const response = fetch("http://localhost:3001/slides", {
         method: "get",
